@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RouteBuilder — Routing Engine for Delivery Fleets | NIKSOFT</title>
+<meta name="description" content="Routing engine for delivery fleets. Daily route calculation on real road data. Pre-built connectors for major CRMs, ERPs, and GPS trackers. Built by NIKSOFT, Kazakhstan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --slate: #334155;
+    --blue: #3b82f6;
+    --blue-deep: #1e40af;
+    --blue-soft: #dbeafe;
+    --blue-pale: #eff6ff;
+    --teal: #0d9488;
+    --teal-soft: #ccfbf1;
+    --warm: #f8fafc;
+    --warm-mid: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #334155;
+    --text-light: #64748b;
+    --text-muted: #94a3b8;
+    --white: #ffffff;
+    --green: #059669;
+    --green-light: #ecfdf5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    background: #f0f2f5;
+    -webkit-font-smoothing: antialiased;
+    padding: 32px 0;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 40px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* — HEADER — */
+  .header {
+    padding: 56px 48px 48px;
+    background: linear-gradient(135deg, var(--blue-pale) 0%, var(--warm) 50%, var(--teal-soft) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--ink);
+  }
+
+  .nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 24px;
+  }
+
+  .nav a:hover { color: var(--blue); }
+
+  .product-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--ink);
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+
+  .header-sub {
+    font-size: 17px;
+    color: var(--text-light);
+    max-width: 640px;
+    line-height: 1.55;
+  }
+
+  .header-cta {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--blue-deep); }
+
+  .btn-secondary {
+    color: var(--ink);
+    text-decoration: none;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .btn-secondary:hover { color: var(--blue); }
+
+  /* — CONTENT — */
+  .content {
+    padding: 48px;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--ink);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  p { margin-bottom: 12px; color: var(--text); }
+  .muted { color: var(--text-light); font-size: 14px; }
+
+  /* — FEATURES — */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .feature {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+
+  .feature h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .feature p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* — SCENARIOS — */
+  .scenarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 12px 0 0;
+  }
+
+  .scenario-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 22px;
+    border: 1px solid var(--border);
+  }
+
+  .scenario-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .scenario-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .scenario-card p {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .scenario-result {
+    background: var(--warm);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .scenario-result strong {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .tech-note {
+    font-size: 14px;
+    color: var(--text-light);
+    background: var(--blue-pale);
+    padding: 14px 20px;
+    border-radius: 8px;
+    border-left: 3px solid var(--blue);
+    margin-top: 20px;
+  }
+
+  /* — INTEGRATIONS — */
+  .integrations-intro {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .integrations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .integration-col {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+
+  .integration-col h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .integration-list {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+
+  .integration-list li {
+    font-size: 14px;
+    color: var(--slate);
+    padding: 4px 0;
+  }
+
+  .integration-list li.live::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    margin-right: 8px;
+  }
+
+  .integration-list li.planned::before {
+    content: '◇';
+    color: var(--text-muted);
+    margin-right: 8px;
+  }
+
+  .integration-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 14px 20px;
+    background: var(--green-light);
+    border-radius: 8px;
+    border-left: 3px solid var(--green);
+  }
+
+  .integration-note strong {
+    color: var(--green);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* — CASES — */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .case-card {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 28px 30px;
+  }
+
+  .case-card .case-region {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+
+  .case-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .case-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .case-stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .case-stat {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 12px 18px;
+    text-align: center;
+    flex: 1;
+  }
+
+  .case-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .case-stat .label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* — ENGAGEMENT — */
+  .engagement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+
+  .engagement-table thead th {
+    background: var(--warm-mid);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 18px;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    color: var(--slate);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .engagement-table tbody td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .engagement-table tbody tr:last-child td { border-bottom: none; }
+
+  .stage-name { font-weight: 600; color: var(--ink); }
+  .stage-free { color: var(--green); font-weight: 600; }
+
+  /* — ABOUT — */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .about-text p {
+    margin-bottom: 12px;
+  }
+
+  .about-stats {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .about-stat {
+    margin-bottom: 16px;
+  }
+
+  .about-stat:last-child { margin-bottom: 0; }
+
+  .about-stat .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .about-stat .value {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* — CTA — */
+  .cta {
+    background: linear-gradient(135deg, var(--ink) 0%, #2d2d4a 100%);
+    color: var(--white);
+    padding: 48px;
+  }
+
+  .cta h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .cta p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+    max-width: 560px;
+  }
+
+  .cta-channels {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .cta-channel {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 14px 20px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+
+  .cta-channel:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .cta-channel strong {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  /* — FOOTER — */
+  .footer {
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--warm);
+  }
+
+  .footer a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 16px;
+  }
+
+  .footer a:hover { color: var(--blue); }
+
+  /* — RESPONSIVE — */
+  @media (max-width: 768px) {
+    body { padding: 0; }
+    .page { border-radius: 0; }
+    .header { padding: 36px 24px 32px; }
+    .header h1 { font-size: 30px; }
+    .content { padding: 32px 24px; }
+    .features-grid, .scenarios, .integrations-grid, .cases-grid, .about-grid { grid-template-columns: 1fr; }
+    .cta { padding: 32px 24px; }
+    .footer { padding: 16px 24px; flex-direction: column; gap: 8px; }
+    .footer a { margin-left: 0; margin-right: 16px; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-top">
+      <div class="logo">NIKSOFT</div>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#cases">Cases</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="product-name">RouteBuilder</div>
+    <h1>Routing engine for delivery fleets — daily routes on real road data</h1>
+    <p class="header-sub">Orders, vehicles, and time windows in. Optimized routes out, in seconds. Built for companies operating 10+ delivery vehicles with daily replenishment or distribution.</p>
+    <div class="header-cta">
+      <a href="#contact" class="btn-primary">Request a demo</a>
+      <a href="#cases" class="btn-secondary">See production cases →</a>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- WHAT IT DOES -->
+    <div class="section" id="features">
+      <div class="section-label">What it does</div>
+      <div class="section-title">Daily routing, automated</div>
+
+      <div class="features-grid">
+        <div class="feature">
+          <h4>Real road network</h4>
+          <p>Calculations on OSRM with real road graphs — not straight-line distances. Travel time accounts for the actual road network of the client's region.</p>
+        </div>
+        <div class="feature">
+          <h4>Time windows and capacity</h4>
+          <p>Customer delivery windows, vehicle capacity, driver shift hours. Constraints honored, not approximated.</p>
+        </div>
+        <div class="feature">
+          <h4>Fleet rebalancing</h4>
+          <p>When a zone overloads, orders are shifted between drivers. Workload distributes evenly across the fleet instead of piling on one route.</p>
+        </div>
+        <div class="feature">
+          <h4>Warm-start re-routing</h4>
+          <p>Order changes mid-day don't trigger a full recalculation. The engine adjusts the existing plan — drivers get a correction, not a new route.</p>
+        </div>
+        <div class="feature">
+          <h4>Dispatcher panel</h4>
+          <p>Web UI for operators: map view, plan vs fact, fleet load, route adjustments, exception handling.</p>
+        </div>
+        <div class="feature">
+          <h4>Driver communication</h4>
+          <p>Route delivery to drivers via Telegram or a mobile app. Status updates flow back to the dispatcher panel in real time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section">
+      <div class="section-label">How it works</div>
+      <div class="section-title">Three modes — production-tested</div>
+      <p class="muted">Benchmarks on a 400-point, 13-vehicle daily delivery scenario:</p>
+
+      <div class="scenarios">
+        <div class="scenario-card">
+          <div class="scenario-num">Mode 1</div>
+          <h4>Build from scratch</h4>
+          <p>New order set every day. Full distribution across the fleet, with windows and capacity.</p>
+          <div class="scenario-result">400 points → <strong>5–30 sec</strong>. All orders served.</div>
+        </div>
+
+        <div class="scenario-card">
+          <div class="scenario-num">Mode 2</div>
+          <h4>Re-route on changes</h4>
+          <p>Plan exists, some orders changed. Minimal corrections, drivers stay on familiar routes.</p>
+          <div class="scenario-result">Warm start: <strong>+7.7%</strong> better mileage vs from scratch.</div>
+        </div>
+
+        <div class="scenario-card">
+          <div class="scenario-num">Mode 3</div>
+          <h4>Re-sort fixed assignments</h4>
+          <p>Driver-customer assignments preserved. Visit order optimized within each route.</p>
+          <div class="scenario-result"><strong>−7% mileage</strong> from re-sorting only.</div>
+        </div>
+      </div>
+
+      <div class="tech-note">
+        One engine: OR-Tools (Google) + OSRM. 400×400 distance matrix in ~2 seconds. Handles country-scale road graphs.
+      </div>
+    </div>
+
+    <!-- INTEGRATIONS -->
+    <div class="section" id="integrations">
+      <div class="section-label">Integrations</div>
+      <div class="section-title">Pre-built connectors, growing library</div>
+
+      <p class="integrations-intro">Every deployment adds a connector. We carry the integration library forward to every next client — so each project is faster than the last.</p>
+
+      <div class="integrations-grid">
+        <div class="integration-col">
+          <h4>CRM / ERP</h4>
+          <ul class="integration-list">
+            <li class="live">Zoho CRM</li>
+            <li class="live">SmartUp (FMCG/SFA)</li>
+            <li class="live">1С</li>
+            <li class="planned">Salesforce</li>
+            <li class="planned">SAP</li>
+            <li class="planned">Microsoft Dynamics</li>
+            <li class="planned">Bitrix24</li>
+            <li class="planned">AmoCRM</li>
+            <li class="planned">Odoo</li>
+          </ul>
+        </div>
+
+        <div class="integration-col">
+          <h4>GPS &amp; Telematics</h4>
+          <ul class="integration-list">
+            <li class="live">Samsara</li>
+            <li class="live">Wialon</li>
+            <li class="live">GLONASS</li>
+            <li class="planned">Geotab</li>
+            <li class="planned">Verizon Connect</li>
+            <li class="planned">Fleet Complete</li>
+            <li class="planned">Teltonika</li>
+          </ul>
+        </div>
+
+        <div class="integration-col">
+          <h4>Orders &amp; Communication</h4>
+          <ul class="integration-list">
+            <li class="live">Telegram (driver delivery)</li>
+            <li class="live">REST / JSON / XML APIs</li>
+            <li class="live">CSV / Excel import</li>
+            <li class="planned">Shopify</li>
+            <li class="planned">WooCommerce</li>
+            <li class="planned">WhatsApp Business</li>
+            <li class="planned">Webhooks for any custom system</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="integration-note"><strong>✓</strong> = live in production. <strong>◇</strong> = on roadmap, available on demand at deployment time. If your system isn't listed, we build the connector as part of the rollout — and it joins the library for the next client.</p>
+    </div>
+
+    <!-- PRODUCTION CASES -->
+    <div class="section" id="cases">
+      <div class="section-label">Production</div>
+      <div class="section-title">Two live deployments</div>
+
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-region">United States — California</div>
+          <h4>Conexwest, container freight</h4>
+          <p>Logistics company, 40+ vehicles, container delivery. Full routing engine plus Zoho CRM and Samsara GPS integration. In production for 2 years.</p>
+          <div class="case-stats">
+            <div class="case-stat">
+              <div class="num">7–43%</div>
+              <div class="label">mileage<br/>reduction</div>
+            </div>
+            <div class="case-stat">
+              <div class="num">40+</div>
+              <div class="label">vehicles<br/>on routes</div>
+            </div>
+            <div class="case-stat">
+              <div class="num">2 yr</div>
+              <div class="label">in<br/>production</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-region">Kazakhstan</div>
+          <h4>FMCG distributor, daily delivery</h4>
+          <p>FMCG distribution, 12 vehicles, daily replenishment. Engine deployed on the client's infrastructure with SmartUp ERP and Telegram driver app integration.</p>
+          <div class="case-stats">
+            <div class="case-stat">
+              <div class="num">17.9%</div>
+              <div class="label">km reduction<br/>on real GPS</div>
+            </div>
+            <div class="case-stat">
+              <div class="num">12</div>
+              <div class="label">vehicles<br/>on routes</div>
+            </div>
+            <div class="case-stat">
+              <div class="num">live</div>
+              <div class="label">measured<br/>in production</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENT -->
+    <div class="section">
+      <div class="section-label">Engagement</div>
+      <div class="section-title">How we work</div>
+
+      <table class="engagement-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Scope</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="stage-name">Demo</td>
+            <td>Calculation on synthetic data for the client's region. Before/after on mileage.</td>
+            <td class="stage-free">Free, 1 week</td>
+          </tr>
+          <tr>
+            <td class="stage-name">Pilot</td>
+            <td>Engine adapted to the client's constraints. Test run on real orders. Calibration.</td>
+            <td>2–3 weeks</td>
+          </tr>
+          <tr>
+            <td class="stage-name">Deployment</td>
+            <td>Integration with CRM/ERP/GPS. Driver app rollout. Dispatcher training. Code handover.</td>
+            <td>4–6 weeks</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="muted" style="margin-top:14px">Modular scope. Start with the core engine, add integrations and modules as needed. Code stays with the client. No subscriptions, no vendor lock-in.</p>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <div class="section-label">About</div>
+      <div class="section-title">NIKSOFT</div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>NIKSOFT is a software company based in Almaty, Kazakhstan. We build enterprise products and custom software for clients worldwide.</p>
+          <p>Our focus is operational software where automation creates a measurable cost or capacity edge — routing, fleet management, dispatch, ERP and GPS integrations, custom backend systems.</p>
+          <p>RouteBuilder is one of our products. The integration library and the engine grow with each deployment, which means every next client moves faster than the last.</p>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="label">Production deployments</div>
+            <div class="value">United States, Kazakhstan</div>
+          </div>
+          <div class="about-stat">
+            <div class="label">Engine in production since</div>
+            <div class="value">2024</div>
+          </div>
+          <div class="about-stat">
+            <div class="label">Headquarters</div>
+            <div class="value">Almaty, Kazakhstan</div>
+          </div>
+          <div class="about-stat">
+            <div class="label">Engagement</div>
+            <div class="value">Worldwide</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta" id="contact">
+    <h3>Want to see it on your data?</h3>
+    <p>A 30-minute call. We show what RouteBuilder does on a synthetic version of your delivery scenario, and walk through what a pilot on your data would look like.</p>
+    <div class="cta-channels">
+      <a href="https://www.linkedin.com/company/niksoft-software" class="cta-channel">
+        <strong>LinkedIn</strong>
+        linkedin.com/company/niksoft-software
+      </a>
+      <a href="mailto:nicholaev@gmail.com" class="cta-channel">
+        <strong>Email</strong>
+        nicholaev@gmail.com
+      </a>
+      <a href="https://wa.me/77053713177" class="cta-channel">
+        <strong>WhatsApp</strong>
+        +7 705 371 31 77
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NIKSOFT © 2026</span>
+    <div>
+      <a href="https://www.linkedin.com/company/niksoft-software">LinkedIn</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
