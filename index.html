@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RouteBuilder — Routing engine for delivery fleets / NIKSOFT</title>
-<meta name="description" content="A routing engine for delivery fleets. Daily routes computed on real road data. In production for two years across the United States and Kazakhstan. Built by NIKSOFT.">
+<meta name="description" content="A routing engine for delivery fleets. Daily routes computed on real road data. In production across the United States and Kazakhstan. Built by NIKSOFT.">
 <meta name="keywords" content="routing engine, vehicle routing problem, VRP, last mile delivery, fleet management, route optimization, OR-Tools, OSRM, dispatch software, delivery routing, FMCG distribution, NIKSOFT">
 <meta name="author" content="NIKSOFT">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="googlebot" content="index,follow">
-<link rel="canonical" href="https://sh00r00p.github.io/routebuilder/">
+<link rel="canonical" href="https://aleksnikolaev.github.io/routebuilder/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NIKSOFT">
 <meta property="og:title" content="RouteBuilder — Routing engine for delivery fleets">
 <meta property="og:description" content="Orders, vehicles, and time windows in. Optimized daily routes out — computed on real road data, in seconds. In production since 2024 across the United States and Kazakhstan.">
-<meta property="og:url" content="https://sh00r00p.github.io/routebuilder/">
+<meta property="og:url" content="https://aleksnikolaev.github.io/routebuilder/">
 <meta property="og:locale" content="en_US">
 
 <!-- Twitter -->
@@ -39,7 +39,7 @@
   "applicationSubCategory": "Logistics Management Software",
   "operatingSystem": "Cross-platform (Linux, Docker)",
   "description": "RouteBuilder is a routing engine for delivery fleets. Inputs are orders, vehicles, and time windows; output is optimized daily routes computed on real road data using OR-Tools and OSRM. Best fit for operations running ten or more delivery vehicles with daily replenishment or distribution.",
-  "url": "https://sh00r00p.github.io/routebuilder/",
+  "url": "https://aleksnikolaev.github.io/routebuilder/",
   "datePublished": "2024-01-01",
   "softwareVersion": "2.0",
   "publisher": {
@@ -76,7 +76,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "NIKSOFT",
-  "url": "https://sh00r00p.github.io/routebuilder/",
+  "url": "https://aleksnikolaev.github.io/routebuilder/",
   "description": "NIKSOFT is a software company building enterprise products and custom development for clients worldwide. Production deployments in the United States and Kazakhstan.",
   "foundingDate": "2024",
   "address": {
@@ -143,7 +143,7 @@
       "name": "What systems does RouteBuilder integrate with?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Live integrations include Zoho CRM, SmartUp, Samsara, Wialon, Telegram, REST and JSON APIs, and CSV import. Roadmap connectors built on demand at deployment time include Salesforce, HubSpot, SAP, Microsoft Dynamics, Odoo, NetSuite, Geotab, Verizon Connect, Fleet Complete, Teltonika, Webfleet, Shopify, WooCommerce, and WhatsApp Business. Custom connectors are built as part of the rollout and join the library for the next client."
+        "text": "Live integrations include Zoho CRM, custom FMCG ERP, Samsara, Wialon, Telegram, REST and JSON APIs, and CSV import. Roadmap connectors built on demand at deployment time include Salesforce, HubSpot, SAP, Microsoft Dynamics, Odoo, NetSuite, Geotab, Verizon Connect, Fleet Complete, Teltonika, Webfleet, Shopify, WooCommerce, and WhatsApp Business. Custom connectors are built as part of the rollout and join the library for the next client."
       }
     },
     {
@@ -151,7 +151,7 @@
       "name": "What results have RouteBuilder customers measured?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Two production deployments. A California freight logistics operator running 40+ vehicles measured a 7 to 43 percent mileage reduction depending on scenario, with two years of continuous production runtime. A Kazakhstan FMCG distributor running 12 vehicles measured a 17.9 percent kilometer reduction against actual GPS tracks after deployment."
+        "text": "Two production deployments. A California freight logistics operator running 40+ vehicles measured a 7 to 43 percent mileage reduction depending on scenario, in continuous production since 2024. A Kazakhstan FMCG distributor measured a 17.9 percent kilometer reduction against actual GPS tracks after deployment."
       }
     },
     {
@@ -1784,7 +1784,7 @@
     <div class="integrations-vis reveal">
       <svg class="int-svg" viewBox="0 0 1100 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="int-diagram-title int-diagram-desc">
         <title id="int-diagram-title">RouteBuilder integration diagram</title>
-        <desc id="int-diagram-desc">A hub-and-spoke diagram with RouteBuilder at the center, connected by solid lines to live integrations (Zoho CRM, SmartUp, Samsara, Wialon, Telegram, REST APIs, CSV import) and by dashed lines to roadmap integrations available on demand at deployment time (Salesforce, HubSpot, SAP, Microsoft Dynamics, Geotab, Verizon Connect, Webfleet, Shopify, WhatsApp Business).</desc>
+        <desc id="int-diagram-desc">A hub-and-spoke diagram with RouteBuilder at the center, connected by solid lines to live integrations (Zoho CRM, custom FMCG ERP, Samsara, Wialon, Telegram, REST APIs, CSV import) and by dashed lines to roadmap integrations available on demand at deployment time (Salesforce, HubSpot, SAP, Microsoft Dynamics, Geotab, Verizon Connect, Webfleet, Shopify, WhatsApp Business).</desc>
         <!-- Connection lines (drawn first so nodes overlay) -->
         <g class="connections">
           <!-- Live: solid lines to live integrations -->
@@ -1827,7 +1827,7 @@
           <text class="node-label" x="180" y="105" text-anchor="middle">Zoho CRM</text>
 
           <circle class="node live" cx="200" cy="270" r="9"/>
-          <text class="node-label" x="200" y="290" text-anchor="middle">SmartUp</text>
+          <text class="node-label" x="200" y="290" text-anchor="middle">Custom ERP</text>
 
           <!-- Planned -->
           <circle class="node planned" cx="220" cy="180" r="7"/>
@@ -1901,7 +1901,7 @@
         <h4>CRM · ERP</h4>
         <ul>
           <li class="live">Zoho CRM</li>
-          <li class="live">SmartUp (FMCG / SFA)</li>
+          <li class="live">Custom FMCG / SFA ERP</li>
           <li class="planned">Salesforce</li>
           <li class="planned">HubSpot</li>
           <li class="planned">SAP</li>
@@ -1967,7 +1967,7 @@
           <div class="dep-loc">UNITED STATES · CALIFORNIA · 36.78° N 119.42° W</div>
           <h3 class="dep-title">Freight logistics, container delivery</h3>
         </div>
-        <p class="dep-desc">A logistics operator running 40+ vehicles in container freight. Full routing engine deployed alongside CRM and GPS telematics integration. Two years continuous production runtime.</p>
+        <p class="dep-desc">A logistics operator running 40+ vehicles in container freight. Full routing engine deployed alongside CRM and GPS telematics integration. In continuous production since 2024.</p>
         <div class="dep-stats">
           <div class="dep-stat">
             <div class="stat-value">7–43%</div>
@@ -1978,7 +1978,7 @@
             <div class="stat-label">Vehicles<br>routed</div>
           </div>
           <div class="dep-stat">
-            <div class="stat-value">2 yr</div>
+            <div class="stat-value" data-runtime-from="2024">2 yr</div>
             <div class="stat-label">Production<br>runtime</div>
           </div>
         </div>
@@ -1988,18 +1988,14 @@
         <div class="dep-stamp">In production</div>
         <div class="dep-head">
           <div class="dep-id">DEP · 002</div>
-          <div class="dep-loc">KAZAKHSTAN · 42.32° N 69.59° E</div>
+          <div class="dep-loc">KAZAKHSTAN · 43.24° N 76.92° E</div>
           <h3 class="dep-title">FMCG distributor, daily replenishment</h3>
         </div>
-        <p class="dep-desc">A regional FMCG distributor operating 12 vehicles in daily delivery. Engine deployed on the client's own infrastructure, integrated with their ERP and a Telegram driver application.</p>
+        <p class="dep-desc">A regional FMCG distributor running daily replenishment routes. Engine deployed on the client's own infrastructure, integrated with their ERP and a Telegram driver application.</p>
         <div class="dep-stats">
           <div class="dep-stat">
             <div class="stat-value">17.9%</div>
             <div class="stat-label">Km reduction<br>vs prior plan</div>
-          </div>
-          <div class="dep-stat">
-            <div class="stat-value">12</div>
-            <div class="stat-label">Vehicles<br>routed</div>
           </div>
           <div class="dep-stat">
             <div class="stat-value">live</div>
@@ -2167,7 +2163,7 @@
 <footer class="footer">
   <div class="container footer-row">
     <span>NIKSOFT © 2026 · ALMATY, KZ · 43.2372° N 76.9150° E</span>
-    <span>SHEET 01 · ROUTEBUILDER · ED. 2026.05</span>
+    <span>SHEET 01 · ROUTEBUILDER · ED. <span data-current-date>2026.06</span></span>
   </div>
 </footer>
 
@@ -2191,5 +2187,17 @@
   })();
 </script>
 
+
+<script>
+// Auto-update temporal markers
+document.querySelectorAll('[data-runtime-from]').forEach(el => {
+  const years = new Date().getFullYear() - parseInt(el.dataset.runtimeFrom);
+  el.textContent = years + ' yr';
+});
+document.querySelectorAll('[data-current-date]').forEach(el => {
+  const d = new Date();
+  el.textContent = d.getFullYear() + '.' + String(d.getMonth()+1).padStart(2,'0');
+});
+</script>
 </body>
 </html>
