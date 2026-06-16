@@ -1,0 +1,35 @@
+# NIKSOFT — Software for delivery operations
+
+> NIKSOFT builds production software for delivery fleets, cloud rendering pipelines, and AI-native team operations. Founded in 2024, headquartered in Almaty, Kazakhstan. Production deployments in the United States and Kazakhstan.
+
+## RouteBuilder
+
+A routing engine for delivery fleets. Inputs: orders, vehicles, time windows. Output: optimized daily routes computed on real road data using OR-Tools and OSRM. In production since 2024.
+
+- [RouteBuilder landing](https://aleksnikolaev.github.io/routebuilder/)
+- [RouteBuilder sitemap](https://aleksnikolaev.github.io/routebuilder/sitemap.xml)
+
+Best fit: delivery fleets with 10+ vehicles, FMCG distribution, last-mile delivery, freight logistics. Sold per-deployment with full source code handover. On-premise or hosted.
+
+## Author
+
+Alex Nikolaev — Meaning strategist, entrepreneur, triathlete. Founder of NIKSOFT.
+
+- [GitHub profile](https://github.com/aleksnikolaev)
+- [LinkedIn personal](https://www.linkedin.com/in/a-nikolaev/)
+- [Substack: Physical Layer](https://alexnik2.substack.com/)
+- [NIKSOFT company on LinkedIn](https://www.linkedin.com/company/niksoft-software)
+
+## Contact
+
+For pilot, deployment, and partnership inquiries:
+
+- LinkedIn: https://www.linkedin.com/company/niksoft-software
+- Email: nonameconsult@gmail.com
+- WhatsApp: +7 705 371 31 77
+
+## Engagement model
+
+Three stages. Demo (free, one week, synthetic data, before-and-after on mileage). Pilot (paid, two to three weeks, real client data, parameter calibration). Deployment (license, four to six weeks, full integration with CRM/ERP/GPS, driver application rollout, source code handover).
+
+No subscription. No vendor lock-in. The client owns the source code.

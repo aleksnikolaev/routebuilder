@@ -26,4 +26,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://sh00r00p.github.io/routebuilder/sitemap.xml
+Sitemap: https://aleksnikolaev.github.io/routebuilder/sitemap.xml

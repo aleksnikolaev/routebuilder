@@ -95,8 +95,18 @@
     "Custom Enterprise Software"
   ],
   "sameAs": [
-    "https://www.linkedin.com/company/niksoft-software"
+    "https://www.linkedin.com/company/niksoft-software",
+    "https://github.com/aleksnikolaev"
   ],
+  "founder": {
+    "@type": "Person",
+    "name": "Alex Nikolaev",
+    "url": "https://github.com/aleksnikolaev",
+    "sameAs": [
+      "https://www.linkedin.com/in/a-nikolaev/",
+      "https://alexnik2.substack.com/"
+    ]
+  },
   "contactPoint": [
     {
       "@type": "ContactPoint",
@@ -117,6 +127,39 @@
 </script>
 
 <!-- Structured data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alex Nikolaev",
+  "alternateName": "Alex Nik",
+  "jobTitle": "Founder",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "NIKSOFT"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Almaty",
+    "addressCountry": "KZ"
+  },
+  "knowsAbout": [
+    "Vehicle Routing Problem",
+    "OR-Tools",
+    "Fleet Management Software",
+    "Cloud Rendering Pipelines",
+    "AI-Native Operations",
+    "Systems Thinking",
+    "Physical Layer Infrastructure"
+  ],
+  "url": "https://github.com/aleksnikolaev",
+  "sameAs": [
+    "https://www.linkedin.com/in/a-nikolaev/",
+    "https://github.com/aleksnikolaev",
+    "https://alexnik2.substack.com/"
+  ]
+}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -168,6 +211,30 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Both. RouteBuilder can be deployed on the client's own infrastructure or hosted by NIKSOFT. The client owns the source code at handover. There is no subscription and no vendor lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can RouteBuilder handle 100 or more vehicles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The OR-Tools solver scales to country-level distance matrices, and the engine has been tested on scenarios with hundreds of vehicles and thousands of stops. In production today, deployments run on fleets ranging from a dozen to several dozen vehicles, but the engine itself is not the limiting factor — fleet size scales as integration and operator readiness scale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the RouteBuilder source code delivered to the client?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. RouteBuilder is sold per-deployment with full source code handover at the end of rollout. The client owns the code, runs it on their own infrastructure if they choose, and can extend or maintain it independently. There is no subscription fee, no vendor lock-in, and no proprietary runtime."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can RouteBuilder optimize for vehicle weight and volume capacity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. RouteBuilder supports CVRP (capacitated vehicle routing) and VRPTW (with time windows). Constraints include vehicle volume, weight, customer delivery windows, driver shift hours, and break rules. Constraints are honored exactly, not approximated."
       }
     },
     {
@@ -2163,6 +2230,13 @@
 <footer class="footer">
   <div class="container footer-row">
     <span>NIKSOFT © 2026 · ALMATY, KZ · 43.2372° N 76.9150° E</span>
+    <span class="footer-links">
+      <a href="https://github.com/aleksnikolaev" target="_blank" rel="noopener">GitHub</a>
+      ·
+      <a href="https://alexnik2.substack.com/" target="_blank" rel="noopener">Substack</a>
+      ·
+      <a href="https://www.linkedin.com/in/a-nikolaev/" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
     <span>SHEET 01 · ROUTEBUILDER · ED. <span data-current-date>2026.06</span></span>
   </div>
 </footer>
